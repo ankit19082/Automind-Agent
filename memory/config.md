@@ -18,8 +18,6 @@ This file contains the configuration parameters for the AutoMind agent. Sensitiv
 - `BRANCH`: `main`
 
 ## Runtime Configuration
-- `POLL_INTERVAL_SECONDS`: `60`
-- `RUN_DURATION`: `120`
-
+- `POLL_INTERVAL_SECONDS`: `120`
 ## Responsibility
 This file is responsible for defining how AutoMind behaves and what resources it can access. It allows users to customize the agent's constraints and capabilities. For security, never hardcode actual tokens in this file; use environment variables instead.
