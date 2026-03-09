@@ -1,0 +1,95 @@
+[12:10:18] [SYS] Loading AutoMind configuration
+[12:10:26] [SYS] Configuration loaded. Found 2 repositories: HK-Booking-Flow, my-app
+[12:10:33] [GIT] Checking HK-Booking-Flow for new commits since 954cbd2dadccc146a6330c6552507df5e0bdb857
+[12:10:41] [GIT] Checking my-app for new commits (initializing state)
+[12:10:51] [GIT] No changes for HK-Booking-Flow
+[12:10:58] [SYS] Initialized my-app state at commit 985fdfdc3445e2cb11ed88a66f786781be42aae5
+[12:10:58] [SYS] Cycle complete. Sleeping for 300 seconds...
+[12:16:14] [SYS] ===== NEW POLLING CYCLE STARTED =====
+[12:16:20] [GIT] Found 1 new commit in HK-Booking-Flow: 194487d
+[12:16:20] [GIT] Found 1 new commit in my-app: 15ed66e
+[12:16:30] [GIT] Analyzing commit 194487d in HK-Booking-Flow with whole-file context
+[12:16:47] [JIRA] Searching for Jira issue key in commit 194487d
+[12:17:29] [JIRA] Jira API not accessible. Setting issue_key to NO-JIRA
+[12:19:48] [SLACK] Slack notification delivered for HK-Booking-Flow commit 194487d
+[12:20:02] [SYS] State for HK-Booking-Flow updated to commit 194487d9a0f333b97e5eb4e8b36537d6312a2cac
+[12:20:29] [GIT] Analyzing commit 15ed66e in my-app with whole-file context
+[12:20:42] [SLACK] Slack notification delivered for my-app commit 15ed66e
+[12:20:42] [SYS] State for my-app updated to commit 15ed66e21033a00e9cb3657382c1c3d5d2dd5c6b
+[12:20:48] [SYS] ===== NEW POLLING CYCLE STARTED =====
+[12:20:58] [GIT] No changes for HK-Booking-Flow
+[12:20:58] [GIT] No changes for my-app
+[12:20:58] [SYS] Cycle complete. Sleeping for 300 seconds...
+[12:26:24] [SYS] ===== NEW POLLING CYCLE STARTED =====
+[12:26:33] [GIT] No changes for HK-Booking-Flow
+[12:26:33] [GIT] No changes for my-app
+[12:26:33] [SYS] Cycle complete. Sleeping for 300 seconds...
+[12:33:28] [SYS] AutoMind initialization started
+[12:33:36] [CFG] Loading environment variables from .env
+[12:33:45] [POLL] Polling repositories for new commits
+[12:33:51] [GIT] Analyzing commit 75a2241 in HK-Booking-Flow
+[12:34:00] [JIRA] Searching for matching issues
+[12:34:18] [ERROR] Slack webhook URL not configured or malformed
+[12:34:25] [SYS] State updated for HK-Booking-Flow
+[12:34:32] [GIT] Analyzing commit 428adb7 in my-app
+[12:34:42] [JIRA] Searching for matching issues
+[12:34:53] [ERROR] Slack notification skipped - webhook not configured
+[12:34:53] [SLACK] Notification would be sent for commit 428adb7
+[12:34:59] [SYS] State updated for my-app
+[12:35:05] [SYS] 💓 HEARTBEAT: Processing cycle complete. All repos up to date.
+[12:35:05] [SYS] Cycle complete. Sleeping...
+[12:43:31] [SYS] AutoMind started. Loading configuration...
+[12:43:40] [CFG] Configuration loaded. Found 2 repositories: hk-booking-flow, my-app
+[12:43:54] [GIT] Checking HEAD commits for both repositories...
+[12:46:04] [SYS] Loading configuration and discovering repositories...
+[12:46:31] [SYS] Found 2 repositories: HK-Booking-Flow, my-app
+[12:46:37] [GIT] Polling repositories for new commits...
+[12:46:42] [GIT] Found 2 new commits across repositories
+[12:46:47] [GIT] Analyzing commit 75a2241 in HK-Booking-Flow
+[12:47:12] [JIRA] Querying for active issues in SCRUM project
+[12:48:34] [JIRA] API connection failed - proceeding with NO-JIRA mode
+[12:53:21] [SLACK] Notification sent for commit 75a2241 (HK-Booking-Flow)
+[12:53:34] [SYS] State updated for HK-Booking-Flow
+[12:54:11] [GIT] Analyzing commit 428adb7 in my-app
+[12:54:46] [SLACK] Notification sent for commit 428adb7 (my-app)
+[12:54:58] [SYS] State updated for my-app
+[12:55:09] [SYS] ✅ Processing cycle complete - 2 commits processed successfully
+[12:55:09] [SYS] 💓 HEARTBEAT: Cycle complete. Sleeping...
+[12:58:24] [SYS] Starting next monitoring cycle...
+[14:57:54] [SYS] Loading AutoMind configuration
+[14:58:06] [CFG] Loading environment variables from .env
+[14:58:13] [SYS] Configuration loaded. Found 2 repositories: HK-Booking-Flow, my-app
+[15:00:29] [GIT] Checked HK-Booking-Flow for new commits
+[15:00:29] [GIT] Checked my-app for new commits
+[15:00:37] [SYS] Analyzing commit: 75a2241 in HK-Booking-Flow with whole-file context
+[15:01:17] [SYS] Analyzing commit: 428adb7 in my-app with whole-file context
+[15:02:05] [JIRA] Searching for issues in SCRUM project
+[15:03:11] [JIRA] Matched commit 75a2241 to SCRUM-21: Remove the login API
+[15:03:11] [JIRA] Matched commit 428adb7 to SCRUM-20: Remove the login page
+[15:03:53] [JIRA] Updated SCRUM-21 to Move to QA status
+[15:04:08] [JIRA] Updated SCRUM-20 to Move to QA status
+[15:04:20] [SLACK] Sent notification for SCRUM-21
+[15:04:20] [SLACK] Sent notification for SCRUM-20
+[15:04:51] [SYS] State for HK-Booking-Flow updated
+[15:04:51] [SYS] State for my-app updated
+[15:04:51] [POLL] Cycle complete. Sleeping...
+[15:07:11] [GIT] Checked HK-Booking-Flow for new commits
+[15:07:11] [GIT] Checked my-app for new commits
+[15:07:18] [GIT] No changes for HK-Booking-Flow
+[15:07:18] [GIT] No changes for my-app
+[15:07:18] [SYS] 💓 HEARTBEAT: Cycle complete...
+[15:07:18] [SYS] Cycle complete. Sleeping...
+[15:14:06] [SYS] Step 1: Configuration loaded successfully. Found 2 repositories.
+[15:14:19] [POLL] Step 4: Checking for new commits in all repositories...
+[15:14:43] [GIT] Found 2 new commits across 2 repositories. Starting batch processing...
+[15:14:56] [ANALYSIS] Analyzing 2 commits with whole-file context...
+[15:15:31] [JIRA] Correlation complete: HK-Booking-Flow → SCRUM-21, my-app → SCRUM-20
+[15:16:23] [JIRA] Updated SCRUM-21 and SCRUM-20 to Move to QA status
+[15:16:36] [SLACK] Single consolidated Slack notification delivered for 2 commits across 2 repositories.
+[15:16:36] [STATE] State updated for 2 repositories: HK-Booking-Flow, my-app.
+[15:17:03] [SYS] Processing cycle complete. Returning to Step 1 for next monitoring cycle...
+[15:17:30] [SYS] Step 1: Configuration loaded successfully. Found 2 repositories.
+[15:17:30] [POLL] Step 4: Checking for new commits in all repositories...
+[15:18:08] [GIT] No changes for HK-Booking-Flow.
+[15:18:08] [GIT] No changes for my-app.
+[15:18:08] [SYS] Cycle complete. Sleeping...

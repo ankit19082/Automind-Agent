@@ -1,0 +1,615 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AutoMind Elite Dashboard 🧠</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=JetBrains+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg-dark: #020617;
+        --bg-glass: rgba(15, 23, 42, 0.6);
+        --accent-primary: #38bdf8;
+        --accent-secondary: #818cf8;
+        --text-glow: #e0f2fe;
+        --text-base: #f1f5f9;
+        --text-muted: #94a3b8;
+        --success: #22c55e;
+        --warning: #f59e0b;
+        --error: #ef4444;
+        --glass-border: rgba(255, 255, 255, 0.1);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Outfit", sans-serif;
+        background: radial-gradient(
+          circle at top left,
+          #0f172a 0%,
+          #020617 100%
+        );
+        color: var(--text-base);
+        min-height: 100vh;
+        padding: 2.5rem;
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      /* Animations */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(0.95);
+          opacity: 0.8;
+        }
+        50% {
+          transform: scale(1.05);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(0.95);
+          opacity: 0.8;
+        }
+      }
+
+      @keyframes shimmer {
+        0% {
+          background-position: -200% 0;
+        }
+        100% {
+          background-position: 200% 0;
+        }
+      }
+
+      .animate-fade {
+        animation: fadeIn 0.6s ease-out forwards;
+      }
+
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 3rem;
+        padding: 1.8rem 2.5rem;
+        background: var(--bg-glass);
+        backdrop-filter: blur(20px);
+        border-radius: 1.5rem;
+        border: 1px solid var(--glass-border);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+      }
+
+      h1 {
+        font-size: 2.2rem;
+        font-weight: 600;
+        background: linear-gradient(
+          to right,
+          var(--accent-primary),
+          var(--accent-secondary)
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        letter-spacing: -0.5px;
+      }
+
+      .status-container {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+      }
+
+      .status-badge {
+        padding: 0.6rem 1.2rem;
+        border-radius: 3rem;
+        font-size: 0.9rem;
+        font-weight: 600;
+        background: rgba(34, 197, 94, 0.1);
+        color: var(--success);
+        border: 1px solid rgba(34, 197, 94, 0.2);
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .heartbeat {
+        width: 10px;
+        height: 10px;
+        background: var(--success);
+        border-radius: 50%;
+        box-shadow: 0 0 12px var(--success);
+        animation: pulse 1.5s infinite ease-in-out;
+      }
+
+      .section-header {
+        margin-bottom: 1.8rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .section-title {
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: var(--text-glow);
+      }
+
+      .section-line {
+        flex: 1;
+        height: 1px;
+        background: linear-gradient(to right, var(--glass-border), transparent);
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+        gap: 2rem;
+        margin-bottom: 4rem;
+      }
+
+      .card {
+        background: var(--bg-glass);
+        backdrop-filter: blur(12px);
+        padding: 2rem;
+        border-radius: 1.5rem;
+        border: 1px solid var(--glass-border);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .card:hover {
+        transform: translateY(-8px) scale(1.02);
+        border-color: var(--accent-primary);
+        box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+      }
+
+      .card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          120deg,
+          transparent,
+          rgba(56, 189, 248, 0.05),
+          transparent
+        );
+        transition: 0.5s;
+      }
+
+      .card:hover::before {
+        left: 100%;
+      }
+
+      .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 1.5rem;
+      }
+
+      .card-name {
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: var(--accent-primary);
+      }
+
+      .card-desc {
+        font-size: 0.95rem;
+        color: var(--text-muted);
+        margin-bottom: 1.8rem;
+        font-style: italic;
+      }
+
+      .meta-group {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .meta-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.8rem;
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 0.8rem;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      .label {
+        color: var(--text-muted);
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .value {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.9rem;
+        color: var(--text-base);
+        max-width: 65%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      /* Timeline Section */
+      .timeline {
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+      }
+
+      .timeline-item {
+        display: flex;
+        gap: 1.5rem;
+        padding: 1.2rem;
+        background: var(--bg-glass);
+        border-radius: 1rem;
+        border: 1px solid var(--glass-border);
+        align-items: center;
+      }
+
+      .time {
+        font-family: "JetBrains Mono";
+        font-size: 0.85rem;
+        color: var(--accent-primary);
+        min-width: 90px;
+      }
+
+      .action {
+        font-size: 0.95rem;
+        color: var(--text-base);
+      }
+
+      .pill {
+        padding: 0.2rem 0.6rem;
+        border-radius: 4px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        margin-right: 0.5rem;
+      }
+
+      .pill-git {
+        background: rgba(240, 80, 50, 0.2);
+        color: #f05032;
+      }
+      .pill-jira {
+        background: rgba(0, 82, 204, 0.2);
+        color: #2684ff;
+      }
+      .pill-slack {
+        background: rgba(74, 21, 75, 0.2);
+        color: #e01e5a;
+      }
+
+      footer {
+        margin-top: 6rem;
+        text-align: center;
+        border-top: 1px solid var(--glass-border);
+        padding-top: 3rem;
+      }
+
+      .footer-text {
+        color: var(--text-muted);
+        font-size: 0.95rem;
+        letter-spacing: 1px;
+        margin-bottom: 0.5rem;
+      }
+
+      .ver-tag {
+        display: inline-block;
+        padding: 0.3rem 0.8rem;
+        background: linear-gradient(
+          to right,
+          var(--accent-primary),
+          var(--accent-secondary)
+        );
+        border-radius: 4px;
+        font-weight: 600;
+        font-size: 0.8rem;
+        color: var(--bg-dark);
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        body {
+          padding: 1.5rem;
+        }
+        header {
+          flex-direction: column;
+          gap: 1.5rem;
+          text-align: center;
+        }
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="animate-fade">
+      <div class="logo-area">
+        <h1>AutoMind Elite Monitoring</h1>
+        <p
+          style="
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 0.4rem;
+          "
+        >
+          Autonomous Multi-Repo DevOps Orchestration
+        </p>
+      </div>
+      <div class="status-container">
+        <div class="status-badge" id="global-status">
+          <div class="heartbeat"></div>
+          Active Polling
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- Project Description Section -->
+      <div
+        class="animate-fade"
+        style="animation-delay: 0.1s; margin-bottom: 3rem"
+      >
+        <div class="card" style="padding: 2rem">
+          <h2
+            style="
+              color: var(--text-glow);
+              margin-bottom: 1rem;
+              font-size: 1.4rem;
+              display: flex;
+              align-items: center;
+              gap: 0.8rem;
+            "
+          >
+            About AutoMind Agent 🧠
+          </h2>
+          <p
+            style="color: var(--text-muted); font-size: 1rem; line-height: 1.6"
+          >
+            AutoMind is a fully autonomous DevOps AI agent that bridges the gap
+            between code and project management. It continuously monitors your
+            local <strong>Git repositories</strong>, performs deep AI analysis
+            on code changes, intelligently correlates commits to
+            <strong>Jira tickets</strong> (e.g., SCRUM-123), automatically
+      <!-- Activity Logger -->
+      <div class="animate-fade" style="animation-delay: 0.6s">
+        <div class="section-header">
+          <h2 class="section-title">Operational Timeline</h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="timeline" id="activity-timeline">
+          <!-- Timeline items will load here -->
+        </div>
+      </div>
+
+      <!-- Live Terminal Console -->
+      <div class="animate-fade" style="animation-delay: 0.8s">
+        <div class="section-header">
+          <h2 class="section-title">Live Terminal Console</h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="terminal" id="terminal" style="background: #000; border: 1px solid var(--accent-primary); border-radius: 1rem; padding: 1.5rem; height: 350px; overflow-y: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; color: #fff; box-shadow: inset 0 0 20px rgba(56, 189, 248, 0.1);">
+          <!-- Terminal lines will load here -->
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <p class="footer-text">DESIGNED FOR AUTONOMOUS SCALE</p>
+      <span class="ver-tag">ELITE v2.5 DEPLOYED</span>
+    </footer>
+
+    <script>
+      async function fetchFile(path) {
+        try {
+          const response = await fetch(path + "?t=" + new Date().getTime());
+          if (response.ok) return await response.text();
+          return null;
+        } catch (e) {
+          return null;
+        }
+      }
+
+      async function loadDashboard() {
+        // 1. Fetch Config
+        const configText = (await fetchFile("memory/config.md")) || "";
+        const pollInterval =
+          configText.match(/POLL_INTERVAL_SECONDS`:\s*`([^`]+)`/)?.[1] ||
+          "Unknown";
+        const jiraUrl =
+          configText.match(/JIRA_BASE_URL`:\s*`([^`]+)`/)?.[1] || "Unknown";
+
+        // 2. Fetch State & Repos
+        const stateText = (await fetchFile("memory/state.md")) || "";
+        const repos = [];
+        const repoNames = [];
+
+        const repoRegex = /- `([a-zA-Z0-9_-]+)_LAST_PROCESSED_COMMIT`:/g;
+        let match;
+        while ((match = repoRegex.exec(stateText)) !== null) {
+          if (!repoNames.includes(match[1])) repoNames.push(match[1]);
+        }
+
+        for (const name of repoNames) {
+          const commitMatch = new RegExp(
+            `\\\`${name}_LAST_PROCESSED_COMMIT\\\`:\\s*\\\`([^\\\`]+)\\\``,
+          ).exec(stateText);
+          const timeMatch = new RegExp(
+            `\\\`${name}_LAST_RUN_TIME\\\`:\\s*\\\`([^\\\`]+)\\\``,
+          ).exec(stateText);
+
+          const lastCommit = commitMatch ? commitMatch[1] : "NONE";
+          let lastRun = timeMatch ? timeMatch[1] : "NEVER";
+          if (lastRun !== "NEVER")
+            lastRun = lastRun.replace("T", " ").replace("Z", "");
+
+          const repoConfigText =
+            (await fetchFile(`memory/repos/${name.toLowerCase()}.md`)) || "";
+          const pathMatch = repoConfigText.match(/REPO_PATH`:\s*`([^`]+)`/);
+          const branchMatch = repoConfigText.match(/REPO_BRANCH`:\s*`([^`]+)`/);
+
+          repos.push({
+            name: name,
+            desc: "AutoMind actively synchronized logic stream.",
+            path: pathMatch ? pathMatch[1] : "/unknown/path",
+            branch: branchMatch ? branchMatch[1] : "main",
+            lastCommit: lastCommit,
+            lastRun: lastRun,
+          });
+        }
+
+        // 3. Fetch Terminal Logs
+        const termText = await fetchFile("memory/terminal.log");
+        const logLines = termText
+          ? termText.split("\n").filter((l) => l.trim().length > 0)
+          : ["[SYS] Dashboard initialized."];
+
+        const timeline = [];
+        const recentLogs = logLines.slice(-40);
+        let isPolling = false;
+
+        recentLogs.forEach((log) => {
+          const logLower = log.toLowerCase();
+          if (logLower.includes("polling") || logLower.includes("scanning")) isPolling = true;
+          if (logLower.includes("heartbeat") || logLower.includes("sleeping")) isPolling = false;
+
+          const timeMatch = log.match(/^\[(.*?)\] \[([a-zA-Z0-9_-]+)\] (.*)/);
+          if (timeMatch) {
+            const type = timeMatch[2].toUpperCase();
+            if (["JIRA", "SLACK", "GIT", "SYS", "POLL"].includes(type) && !logLower.includes("heartbeat")) {
+              timeline.unshift({ time: timeMatch[1], type: type, action: timeMatch[3] });
+            }
+          }
+        });
+
+        if (timeline.length === 0) {
+          timeline.push({ time: new Date().toLocaleTimeString(), type: "SYS", action: "System online. Waiting for agent cycle." });
+        }
+
+        const infra = [
+          { label: "Jira Relay", value: jiraUrl },
+          { label: "Poll Rate", value: pollInterval.includes("s") ? pollInterval : pollInterval + "s" },
+          { label: "Gateway", value: "Slack Webhook Live" },
+        ];
+
+        const repoGrid = document.getElementById("repo-grid");
+        if (repos.length === 0) {
+          repoGrid.innerHTML = '<div style="color: var(--text-muted)">No repositories discovered in memory/state.md yet.</div>';
+        } else {
+          repoGrid.innerHTML = repos
+            .map(
+              (repo, index) => `
+                <div class="card animate-fade" style="animation-delay: ${0.5 + index * 0.1}s">
+                    <div class="card-header">
+                        <span class="card-name">${repo.name}</span>
+                        <div style="display:flex; align-items:center; gap:0.5rem">
+                            <span style="font-size:0.75rem; font-weight:600; color:var(--success)">SYNCED</span>
+                            <span style="color: var(--success); font-size: 1.2rem;">●</span>
+                        </div>
+                    </div>
+                    <p class="card-desc">${repo.desc}</p>
+                    <div class="meta-group">
+                        <div class="meta-item"><span class="label">Local Root</span><span class="value" title="${repo.path}">${repo.path}</span></div>
+                        <div class="meta-item"><span class="label">Stream</span><span class="value">${repo.branch}</span></div>
+                        <div class="meta-item"><span class="label">Latest Ptr</span><span class="value">${repo.lastCommit.substring(0, 12)}</span></div>
+                        <div class="meta-item"><span class="label">Last Logic Run</span><span class="value">${repo.lastRun}</span></div>
+                    </div>
+                </div>
+            `,
+            ).join("");
+        }
+
+        const infraGrid = document.getElementById("infra-grid");
+        infraGrid.innerHTML = infra
+          .map(
+            (item, index) => `
+                <div class="card animate-fade" style="padding: 1.2rem; animation-delay: ${0.3 + index * 0.1}s">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span class="label">${item.label}</span>
+                        <span style="font-family: 'JetBrains Mono'; color: var(--accent-secondary); font-weight: 600;">${item.value}</span>
+                    </div>
+                </div>
+            `,
+          ).join("");
+
+        const timelineElem = document.getElementById("activity-timeline");
+        timelineElem.innerHTML = timeline.slice(0, 5)
+          .map(
+            (event, index) => {
+              let safeType = event.type.toLowerCase();
+              if(safeType === 'git' || safeType === 'poll') safeType = 'git';
+              else if(safeType !== 'jira' && safeType !== 'slack') safeType = 'sys';
+              return `
+                <div class="timeline-item animate-fade" style="animation-delay: ${0.7 + index * 0.05}s">
+                    <span class="time">${event.time}</span>
+                    <div class="action">
+                        <span class="pill pill-${safeType}">${event.type}</span>
+                        ${event.action}
+                    </div>
+                </div>
+            `;}
+          ).join("");
+
+        const term = document.getElementById("terminal");
+        if(term) {
+           const targetLines = logLines.slice(-100);
+           const termContent = targetLines
+             .map(log => `<div style="margin-bottom: 0.5rem;"><span style="color: var(--success); margin-right: 0.5rem;">root@automind:~$</span><span style="color: #94a3b8;">${log.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</span></div>`)
+             .join("");
+           if (term.getAttribute("data-content") !== termContent) {
+             term.innerHTML = termContent;
+             term.setAttribute("data-content", termContent);
+             term.scrollTop = term.scrollHeight;
+           }
+        }
+
+        const statusBadge = document.getElementById("global-status");
+        if (isPolling) {
+          statusBadge.innerHTML = '<div class="heartbeat" style="background: var(--warning); box-shadow: 0 0 15px var(--warning);"></div> System Processing';
+          statusBadge.style.color = "var(--warning)";
+          statusBadge.style.borderColor = "rgba(245, 158, 11, 0.3)";
+          statusBadge.style.background = "rgba(245, 158, 11, 0.1)";
+        } else {
+          statusBadge.innerHTML = '<div class="heartbeat"></div> Active Polling';
+          statusBadge.style.color = "var(--success)";
+          statusBadge.style.borderColor = "rgba(34, 197, 94, 0.3)";
+          statusBadge.style.background = "rgba(34, 197, 94, 0.1)";
+        }
+      }
+
+      window.onload = loadDashboard;
+      setInterval(loadDashboard, 3000);
+    </script>
+  </body>
+</html>
