@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AutoMind Agent 🧠 - Dashboard & Documentation</title>
+    <!-- Use Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary: #4f46e5;
+        --primary-light: #6366f1;
+        --bg-dark: #0f172a;
+        --surface-dark: #1e293b;
+        --surface-light: #334155;
+        --text-main: #f8fafc;
+        --text-muted: #94a3b8;
+        --success: #10b981;
+        --warning: #f59e0b;
+        --accent: #8b5cf6;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Inter", sans-serif;
+        background-color: var(--bg-dark);
+        color: var(--text-main);
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+
+      header {
+        text-align: center;
+        padding: 4rem 0;
+        background: linear-gradient(
+          135deg,
+          rgba(79, 70, 229, 0.1),
+          rgba(139, 92, 246, 0.1)
+        );
+        border-bottom: 1px solid var(--surface-light);
+        margin-bottom: 3rem;
+        border-radius: 0 0 2rem 2rem;
+      }
+
+      h1 {
+        font-size: 3rem;
+        margin-bottom: 0.5rem;
+        background: linear-gradient(to right, #818cf8, #c084fc);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .subtitle {
+        color: var(--text-muted);
+        font-size: 1.2rem;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-bottom: 3rem;
+      }
+
+      .card {
+        background-color: var(--surface-dark);
+        border-radius: 1rem;
+        padding: 2rem;
+        box-shadow:
+          0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        border: 1px solid var(--surface-light);
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow:
+          0 20px 25px -5px rgba(0, 0, 0, 0.2),
+          0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        border-color: var(--primary-light);
+      }
+
+      .card h2 {
+        display: flex;
+        align-items: center;
+        font-size: 1.5rem;
+        margin-top: 0;
+        color: var(--primary-light);
+        border-bottom: 1px solid var(--surface-light);
+        padding-bottom: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .card h2 .icon {
+        margin-right: 0.75rem;
+        font-size: 1.8rem;
+      }
+
+      ul {
+        padding-left: 1.2rem;
+      }
+
+      li {
+        margin-bottom: 0.75rem;
+      }
+
+      .kpi-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .kpi-card {
+        background: linear-gradient(
+          145deg,
+          var(--surface-dark),
+          var(--bg-dark)
+        );
+        padding: 1.5rem;
+        border-radius: 0.75rem;
+        border: 1px solid var(--surface-light);
+        text-align: center;
+      }
+
+      .kpi-value {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--success);
+        margin: 0.5rem 0;
+      }
+
+      .kpi-title {
+        font-weight: 600;
+        color: var(--text-main);
+        margin-bottom: 0.25rem;
+      }
+
+      .kpi-desc {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+      }
+
+      code {
+        background-color: var(--bg-dark);
+        color: #38bdf8;
+        padding: 0.2rem 0.4rem;
+        border-radius: 0.3rem;
+        font-family: monospace;
+        font-size: 0.9em;
+      }
+
+      pre {
+        background-color: var(--bg-dark);
+        padding: 1rem;
+        border-radius: 0.5rem;
+        overflow-x: auto;
+        border: 1px solid var(--surface-light);
+        color: #e2e8f0;
+      }
+
+      pre code {
+        background: none;
+        padding: 0;
+        color: inherit;
+      }
+
+      .full-width {
+        grid-column: 1 / -1;
+      }
+
+      .checklist-item {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 1rem;
+      }
+
+      .checklist-item input[type="checkbox"] {
+        margin-top: 0.3rem;
+        margin-right: 1rem;
+        width: 1.2rem;
+        height: 1.2rem;
+        cursor: pointer;
+        accent-color: var(--primary);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <h1>AutoMind Agent 🧠</h1>
+        <p class="subtitle">
+          Central Dashboard & Documentation for the autonomous DevOps AI agent.
+        </p>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="grid">
+        <!-- Section 1: What it does -->
+        <div class="card">
+          <h2><span class="icon">🤖</span> What the Agent Does</h2>
+          <p>
+            AutoMind is a
+            <strong>Markdown-based autonomous DevOps AI agent</strong>. Its
+            primary responsibilities are:
+          </p>
+          <ul>
+            <li>
+              <strong>Repository Monitoring</strong>: Continuously watches
+              configured local Git repositories for new commits and changes.
+            </li>
+            <li>
+              <strong>Jira Correlation</strong>: Automatically parses commit
+              messages and branch names to link code changes to Jira tickets
+              using AI and regex (e.g., <code>SCRUM-123</code>).
+            </li>
+            <li>
+              <strong>Smart Status Updates</strong>: Analyzes the implementation
+              completeness from diffs and moves Jira tickets to appropriate
+              statuses such as "In Progress" or "Human-Review" / "Move to QA".
+            </li>
+            <li>
+              <strong>Team Communications</strong>: Generates professional,
+              client-ready summaries of code changes and broadcasts them via
+              Slack Webhooks.
+            </li>
+            <li>
+              <strong>Self-Healing & Resilience</strong>: Automatically handles
+              API rate limits (e.g., HTTP 429), retries failed requests, and
+              manages long-running queues without hanging.
+            </li>
+          </ul>
+        </div>
+
+        <!-- Section 2: How to run it -->
+        <div class="card">
+          <h2><span class="icon">🚀</span> How to Run It</h2>
+          <h3>1. Environment Variables</h3>
+          <p>Create a <code>.env</code> file in the root directory:</p>
+          <pre><code>JIRA_API_TOKEN=your_jira_token
+SLACK_WEBHOOK_URL=your_slack_webhook_url</code></pre>
+
+          <h3>2. Global Configuration</h3>
+          <p>
+            Update <code>memory/config.md</code> with your Jira email, Jira Base
+            URL, and monitoring preferences.
+          </p>
+
+          <h3>3. Add Repositories</h3>
+          <p>
+            Create a markdown file in <code>memory/repos/</code> (e.g.,
+            <code>my-app.md</code>):
+          </p>
+          <pre><code># My App Repository
+- REPO_PATH: /path/to/your/local/repo
+- REPO_BRANCH: main</code></pre>
+
+          <h3>4. Launch the Agent</h3>
+          <pre><code>claude --dangerously-skip-permissions</code></pre>
+        </div>
+
+        <!-- Section 3: Guidelines & Checklists -->
+        <div class="card full-width">
+          <h2><span class="icon">✅</span> Guidelines & Checklists</h2>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem">
+            <div>
+              <h3>Pre-Run Checklist</h3>
+              <label class="checklist-item">
+                <input type="checkbox" />
+                <span
+                  >Ensure the <code>.env</code> file exists and contains valid
+                  <code>JIRA_API_TOKEN</code> and
+                  <code>SLACK_WEBHOOK_URL</code>.</span
+                >
+              </label>
+              <label class="checklist-item">
+                <input type="checkbox" />
+                <span
+                  >Verify that all repositories listed in
+                  <code>memory/repos/</code> have valid local paths.</span
+                >
+              </label>
+              <label class="checklist-item">
+                <input type="checkbox" />
+                <span
+                  >Check <code>memory/config.md</code> for accurate Jira domain
+                  and user email.</span
+                >
+              </label>
+            </div>
+
+            <div>
+              <h3>Operational Guidelines</h3>
+              <ul>
+                <li>
+                  <strong>Commit Best Practices</strong>: Always include the
+                  Jira Ticket ID (e.g., <code>PROJ-404</code>) in your commit
+                  messages or branch names.
+                </li>
+                <li>
+                  <strong>State Management</strong>: The agent maintains its
+                  working state in <code>memory/state.md</code>.
+                  <strong>Do not</strong> edit this file manually while the
+                  agent is actively running.
+                </li>
+                <li>
+                  <strong>Troubleshooting</strong>: Check the
+                  <code>troubleshooting-[timestamp].md</code> files in the
+                  <code>memory/</code> directory if unrecoverable errors occur.
+                </li>
+                <li>
+                  <strong>Rate Limits</strong>: Do not force-restart repeatedly
+                  if Jira returns HTTP 429; allow the agent's built-in timeout
+                  to handle it.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 4: KPIs -->
+        <div class="card full-width">
+          <h2><span class="icon">📊</span> Defined KRA / KPIs</h2>
+          <p style="margin-bottom: 2rem; color: var(--text-muted)">
+            How we measure if the AutoMind agent is doing its job effectively:
+          </p>
+
+          <div class="kpi-grid">
+            <div class="kpi-card">
+              <div class="kpi-title">Correlation Accuracy</div>
+              <div class="kpi-value">&gt;95%</div>
+              <div class="kpi-desc">
+                Commits Successfully Linked to Jira Tickets
+              </div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-title">Automation Success</div>
+              <div class="kpi-value">&gt;90%</div>
+              <div class="kpi-desc">
+                Accurate Jira Status Transitions based on context
+              </div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-title">Notification Reliability</div>
+              <div class="kpi-value">100%</div>
+              <div class="kpi-desc">
+                Successful Slack Broadcasts per Sprint without spam
+              </div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-title">Time Saved</div>
+              <div class="kpi-value">2-3 hrs</div>
+              <div class="kpi-desc">
+                Manual work hours saved per developer, per week
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
